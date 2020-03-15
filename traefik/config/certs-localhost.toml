@@ -1,0 +1,3 @@
+[[tls.certificates]]
+certFile = "/etc/ssl/certs/wildcard.localhost.crt"
+keyFile = "/etc/ssl/certs/wildcard.localhost.key"

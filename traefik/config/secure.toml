@@ -1,0 +1,26 @@
+[http]
+  # Add the router
+  [http.routers]
+    [http.routers.http-to-https]
+      entryPoints = ["web"]
+      middlewares = ["redirect-to-https"]
+      rule = "HostRegexp(`{host:.+}`)"
+
+      # Every router needs a service, even if it routes all its
+      # traffic elsewhere
+      service = "noop"
+
+  [http.middlewares]
+    [http.middlewares.redirect-to-https.redirectScheme]
+      scheme = "https"
+
+  [http.services]
+    # noop service, the URL will be never called
+    [http.services.noop.loadBalancer]
+      [[http.services.noop.loadBalancer.servers]]
+        url = "http://192.168.0.1"
+
+[tls.options]
+  [tls.options.default]
+    sniStrict = true
+

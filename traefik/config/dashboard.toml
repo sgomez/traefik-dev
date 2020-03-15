@@ -1,0 +1,6 @@
+# Dashboard
+[http.routers.dashboard]
+  rule = "HostRegexp(`{host:traefik.+}.{subdomain:.+}`)"
+  service = "api@internal"
+  [http.routers.dashboard.tls]
+
